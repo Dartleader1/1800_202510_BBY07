@@ -59,7 +59,7 @@ project-name/
 
 ## Contributors
 - Justin - BCIT CSIT Student, professional coder with over 2 weeks of expereience. Fun fact: Is double jointed in the right thumb.
-- **Teammate Name** - BCIT CST Student, Frontend enthusiast with a knack for creative design. Fun fact: Has a collection of over 50 houseplants.
+- **Teammate Name** -Ahmad Rashid 
 
 
 ---
