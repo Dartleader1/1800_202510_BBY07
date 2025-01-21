@@ -58,7 +58,7 @@ project-name/
 ---
 
 ## Contributors
-<<<<<<< HEAD
+
 - **Peter** - I'm a BCIT CST student here and trying to learn how to use git. Fun fact: I learnd few years Kunfu.
 =======
 - Justin - BCIT CSIT Student, professional coder with over 2 weeks of expereience. Fun fact: Is double jointed in the right thumb.
