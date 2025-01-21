@@ -62,7 +62,7 @@ project-name/
 - **Peter** - I'm a BCIT CST student here and trying to learn how to use git. Fun fact: I learnd few years Kunfu.
 
 - Justin - BCIT CSIT Student, professional coder with over 2 weeks of expereience. Fun fact: Is double jointed in the right thumb.
->>>>>>> fc648a6ca524545cb90755cc63b5c4da7a829b4a
+
 - **Teammate Name** - BCIT CST Student, Frontend enthusiast with a knack for creative design. Fun fact: Has a collection of over 50 houseplants.
 
 
