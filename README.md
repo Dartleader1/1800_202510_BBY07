@@ -59,16 +59,10 @@ project-name/
 
 ## Contributors
 
-- Justin - BCIT CSIT Student, professional coder with over 2 weeks of expereience. Fun fact: Is double jointed in the right thumb.
-- **Teammate Name** -Ahmad Rashid - CIT Student with over one week of expereience. Fun Fact :nothing 
+- **Justin** - BCIT CSIT Student, professional coder with over 2 weeks of expereience. Fun fact: Is double jointed in the right thumb.
+- **Ahmad Rashid** - CIT Student with over one week of expereience. Fun Fact :nothing 
 
 - **Peter** - I'm a BCIT CST student here and trying to learn how to use git. Fun fact: I learnd few years Kunfu.
-
-- Justin - BCIT CSIT Student, professional coder with over 2 weeks of expereience. Fun fact: Is double jointed in the right thumb.
-
-- **Teammate Name** - BCIT CST Student, Frontend enthusiast with a knack for creative design. Fun fact: Has a collection of over 50 houseplants.
-
-- **Teammate Name** -Ahmad Rashid 
 
 ---
 
