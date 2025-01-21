@@ -59,7 +59,7 @@ project-name/
 
 ## Contributors
 - Justin - BCIT CSIT Student, professional coder with over 2 weeks of expereience. Fun fact: Is double jointed in the right thumb.
-- **Teammate Name** -Ahmad Rashid 
+- **Teammate Name** -Ahmad Rashid - CIT Student with over one week of expereience. Fun Fact :nothing 
 
 
 ---
