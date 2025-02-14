@@ -1,59 +1,104 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>My BCIT Project</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Responsive Page with Dynamic Greeting</title>
+  
   <!-- Bootstrap CSS -->
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+  
   <!-- Custom CSS -->
   <style>
-    .navbar-custom {
-      background-color: blue; /* Set navbar background color to blue */
+    /* Basic page styling */
+    body {
+      margin: 0;
+      padding: 0;
+      background-color: #f8f8f8;
+      /* Removing flex centering to allow for a natural flow of content */
     }
-    .navbar-custom .navbar-brand,
-    .navbar-custom .nav-link,
-    .navbar-custom .greeting {
-      color: #fff;
+    
+    /* Navbar styling */
+    .navbar {
+      background-color: blue; /* custom blue background */
+    }
+    
+    /* Footer styling */
+    .footer {
+      position: fixed;
+      bottom: 0;
+      width: 100%;
+      background: #c7c7c7;
+      display: flex;
+      justify-content: space-around;
+      align-items: center;
+      padding: 10px 0;
+      border-top: 3px solid #9b5ff9;
+    }
+    .footer a {
+      text-decoration: none;
+      color: black;
+      text-align: center;
+      font-family: Arial, sans-serif;
+    }
+    .footer a div {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    .footer a img {
+      width: 40px;
+      height: 40px;
+    }
+    
+    /* Extra bottom padding for main content so it doesn't get hidden behind the footer */
+    .content {
+      padding-bottom: 80px;
     }
   </style>
 </head>
 <body>
-  <!-- Navbar with blue background -->
-  <nav class="navbar navbar-expand-lg navbar-custom">
+  <!-- Responsive Navbar with Blue Background (only a brand/logo) -->
+  <nav class="navbar navbar-expand-lg navbar-dark">
     <div class="container-fluid">
-      <!-- Navbar Brand/Logo -->
+      <!-- Navbar brand/logo -->
       <a class="navbar-brand" href="#">
-        <img src="logo-image-put-in-here.png" alt="Logo" height="36" class="d-inline-block align-text-top">
+        <img src="logo-image-put-in-here.png" alt="PowerBankLogo" height="36" class="d-inline-block align-text-top">
       </a>
-      <!-- Toggle button for mobile view -->
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarContent" 
-              aria-controls="navbarContent" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <!-- Navbar content -->
-      <div class="collapse navbar-collapse justify-content-end" id="navbarContent">
-        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-          <!-- Example nav links -->
-          <li class="nav-item">
-            <a class="nav-link" href="#">Home</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#">About</a>
-          </li>
-        </ul>
-        <!-- Dynamic Greeting -->
-        <span id="greeting" class="greeting"></span>
-      </div>
+      <!-- You can include additional navbar content here if needed -->
     </div>
   </nav>
-
-  <!-- Optional Main Content -->
-  <div class="container my-5">
-    <p>Welcome to our website!</p>
+  
+  <!-- Main Content -->
+  <div class="container content my-5">
+    <!-- Dynamic Greeting -->
+    <h1 id="greeting"></h1>
+    <p>This greeting changes based on the time of day.</p>
   </div>
-
+  
+  <!-- Fixed Footer -->
+  <div class="footer">
+    <a href="home.html">
+      <div>
+        <img src="./images/home.png" alt="Home">
+        <span>HOME</span>
+      </div>
+    </a>
+    <a href="charge.html">
+      <div>
+        <img src="./images/bolt.png" alt="Charge">
+        <span>CHARGE</span>
+      </div>
+    </a>
+    <a href="alerts.html">
+      <div>
+        <img src="./images/bell.png" alt="Alerts">
+        <span>ALERTS</span>
+      </div>
+    </a>
+  </div>
+  
   <!-- JavaScript to update the greeting based on time -->
   <script>
     function updateGreeting() {
@@ -69,14 +114,13 @@
         greeting = 'Good evening';
       }
       
-      // You can modify the username or remove it if not needed.
-      const username = 'username'; // Replace with actual dynamic username if available.
-      document.getElementById('greeting').innerText = `${greeting}, ${username}!`;
+      const username = 'username'; // Replace 'username' with dynamic content if needed.
+      document.getElementById('greeting').innerText = ${greeting}, ${username}!;
     }
     
     updateGreeting();
   </script>
-
+  
   <!-- Bootstrap JS Bundle (includes Popper) -->
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
           integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
