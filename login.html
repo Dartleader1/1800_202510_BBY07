@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Login - My BCIT Project</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- Bootstrap Library CSS CDN go here -->
+  <!-- Bootstrap Library JS CDN go here -->
+  <!-- Other libraries go here -->
+  <link rel="stylesheet" href="./styles/style.css">
+</head>
+<body>
+  <header>
+    <h1>Welcome to My BCIT Project</h1>
+    <!-- Optional navigation can go here -->
+    <nav>
+      <a href="home.html">Home</a>
+      <a href="about.html">About Us</a>
+    </nav>
+  </header>
+
+  <main>
+    <!-- Login/Sign Up Section -->
+    <section class="login-signup-container">
+      <div class="login-section">
+        <h2>Sign In</h2>
+        <form action="login_process.php" method="post">
+          <div>
+            <label for="login-email">Email:</label>
+            <input type="email" id="login-email" name="login-email" placeholder="Enter your email" required>
+          </div>
+          <div>
+            <label for="login-password">Password:</label>
+            <input type="password" id="login-password" name="login-password" placeholder="Enter your password" required>
+          </div>
+          <button type="submit">Sign In</button>
+        </form>
+      </div>
+
+      <div class="signup-section">
+        <h2>Sign Up</h2>
+        <form action="signup_process.php" method="post">
+          <div>
+            <label for="signup-name">Name:</label>
+            <input type="text" id="signup-name" name="signup-name" placeholder="Enter your name" required>
+          </div>
+          <div>
+            <label for="signup-email">Email:</label>
+            <input type="email" id="signup-email" name="signup-email" placeholder="Enter your email" required>
+          </div>
+          <div>
+            <label for="signup-password">Password:</label>
+            <input type="password" id="signup-password" name="signup-password" placeholder="Create a password" required>
+          </div>
+          <div>
+            <label for="signup-confirm-password">Confirm Password:</label>
+            <input type="password" id="signup-confirm-password" name="signup-confirm-password" placeholder="Confirm your password" required>
+          </div>
+          <button type="submit">Sign Up</button>
+        </form>
+      </div>
+    </section>
+
+    <!-- About Us Section -->
+    <section class="about-us">
+      <h2>About Us</h2>
+      <p>
+        Welcome to My BCIT Project. Our mission is to create innovative and accessible solutions that empower users. We are dedicated to quality, usability, and continuous innovation. Learn more about our journey and values as we strive to bring the best user experience to everyone.
+      </p>
+    </section>
+  </main>
+
+  <footer>
+    <p>&copy; 2025 My BCIT Project. All rights reserved.</p>
+  </footer>
+
+  <!-- Your own JavaScript functions go here -->
+  <!-- <script src="./scripts/script.js"></script> -->
+</body>
+</html>
