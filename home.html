@@ -1,72 +1,67 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-    <title>My BCIT Project</title>
-    <meta name="comp1800 template" content="My 1800 App">
-
-    <!-- Required meta tags -->
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-
-    <!-- Bootstrap Library CSS CDN go here -->
-    <!-- Boostrap Library JS CDN go here -->
-
-    <!-- Other libraries go here -->
-
-    <!-- Link to styles of your own -->
-    <link rel="stylesheet" href="./styles/style.css">
+  <title>Login - My BCIT Project</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- Bootstrap Library CSS CDN (if needed) -->
+  <!-- Bootstrap Library JS CDN (if needed) -->
+  <link rel="stylesheet" href="./styles/style.css">
 </head>
-
 <body>
+  <header>
+    <h1>Welcome</h1>
+  </header>
+  <main>
+    <section id="login-signup">
+      <div class="container">
+        <div class="login-form">
+          <h2>Sign In</h2>
+          <form action="signin_process.php" method="post">
+            <label for="login-username">Username:</label>
+            <input type="text" id="login-username" name="username" required>
+            <label for="login-password">Password:</label>
+            <input type="password" id="login-password" name="password" required>
+            <button type="submit">Sign In</button>
+          </form>
+        </div>
+        <div class="signup-form">
+          <h2>Sign Up</h2>
+          <form action="signup_process.php" method="post">
+            <label for="signup-username">Username:</label>
+            <input type="text" id="signup-username" name="username" required>
+            <label for="signup-email">Email:</label>
+            <input type="email" id="signup-email" name="email" required>
+            <label for="signup-password">Password:</label>
+            <input type="password" id="signup-password" name="password" required>
+            <button type="submit">Sign Up</button>
+          </form>
+        </div>
+      </div>
+    </section>
 
-    <!-- Your HTML Layout goes here -->
-
-    <!-- Navigation Footer with added links for Messages, Profile, and History -->
-    <div class="footer">
-        <a href="home.html">
-            <div>
-               <img src="./images/home.png" alt="Home">
-                <span>HOME</span>
-            </div>
-        </a>
-        <a href="charge.html">
-            <div>
-                <img src="./images/bolt.png" alt="Charge">
-                <span>CHARGE</span>
-            </div>
-        </a>
-        <a href="alerts.html">
-            <div>
-                <img src="./images/bell.png" alt="Alerts">
-                <span>ALERTS</span>
-            </div>
-        </a>
-        <a href="messages.html">
-            <div>
-                <img src="./images/messages.png" alt="Messages">
-                <span>MESSAGES</span>
-            </div>
-        </a>
-        <a href="profile.html">
-            <div>
-                <img src="./images/profile.png" alt="Profile">
-                <span>PROFILE</span>
-            </div>
-        </a>
-        <a href="history.html">
-            <div>
-                <img src="./images/history.png" alt="History">
-                <span>HISTORY</span>
-            </div>
-        </a>
-    </div>
-
-    <!-- Stuff for body goes here -->
-
-    <!-- Your own JavaScript functions go here -->
-    <!-- <script src="./scripts/script.js"></script> -->
-
+    <section id="about-us">
+      <h2>About Us</h2>
+      <p>
+        Welcome to My BCIT Project! This platform is designed to provide an excellent user experience with
+        seamless navigation and modern functionality. Whether you're signing in or signing up, we are dedicated
+        to offering quality service and support.
+      </p>
+    </section>
+  </main>
+  
+  <!-- Navigation Footer -->
+  <div class="footer">
+    <a href="home.html">
+      <div>
+        <img src="./images/home.png" alt="Home">
+        <span>HOME</span>
+      </div>
+    </a>
+    <!-- Add additional footer links if needed -->
+  </div>
+  
+  <!-- Your own JavaScript functions go here -->
+  <!-- <script src="./scripts/script.js"></script> -->
 </body>
-
 </html>
