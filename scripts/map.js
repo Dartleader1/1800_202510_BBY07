@@ -5,12 +5,12 @@ function showMap() {
     // TO MAKE THE MAP APPEAR YOU MUST
     // ADD YOUR ACCESS TOKEN FROM
     // https://account.mapbox.com
-    mapboxgl.accessToken = 'your-token-goes-here';
+    mapboxgl.accessToken = 'pk.eyJ1IjoianVzdGlucmMiLCJhIjoiY204NHVldm9xMjlwNjJzcHlucHZ6ZTQyYSJ9.71yZqTl1XmBdfK3scyPyzA';
     const map = new mapboxgl.Map({
         container: 'map', // Container ID
         style: 'mapbox://styles/mapbox/streets-v11', // Styling URL
-        center: [-122.964274, 49.236082], // Starting position
-        zoom: 8 // Starting zoom
+        center: [-123.001549, 49.253304], // Starting position
+        zoom: 14 // Starting zoom
     });
 
     // Add user controls to map, zoom bar
@@ -47,7 +47,7 @@ function addHikePins(map){
             map.addImage('eventpin', image); // Pin Icon
 
             // READING information from "events" collection in Firestore
-            db.collection('hikes').get().then(allEvents => {
+            db.collection('batteries').get().then(allEvents => {
                 const features = []; // Defines an empty array for information to be added to
 
                 allEvents.forEach(doc => {
