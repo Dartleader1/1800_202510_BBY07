@@ -7,6 +7,7 @@
  */
 body, html{
     margin: 0;
+    height: 100%;
     padding: 0;
     background-color: white;
 }
@@ -27,4 +28,10 @@ body, html{
 }
 header{
     background-color: #226f54ff;
+}
+#firebaseui-auth-container{
+    height: 50%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
 }
