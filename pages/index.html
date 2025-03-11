@@ -3,154 +3,59 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Responsive Page with Dynamic Greeting</title>
+  <title>Battery Buddy</title>
   
   <!-- Bootstrap CSS -->
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
-  
-  <!-- Custom CSS -->
-  <style>
-    /* Basic page styling */
-    body {
-      margin: 0;
-      padding: 0;
-      background-color: #f8f8f8;
-      /* Removing flex centering to allow for a natural flow of content */
-    }
-    
-    /* Navbar styling */
-    .navbar {
-      background-color: blue; /* custom blue background */
-    }
-    
-    /* Footer styling */
-    .footer {
-      position: fixed;
-      bottom: 0;
-      width: 100%;
-      background: #c7c7c7;
-      display: flex;
-      justify-content: space-around;
-      align-items: center;
-      padding: 10px 0;
-      border-top: 3px solid #9b5ff9;
-    }
-    .footer a {
-      text-decoration: none;
-      color: black;
-      text-align: center;
-      font-family: Arial, sans-serif;
-    }
-    .footer a div {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-    }
-    .footer a img {
-      width: 40px;
-      height: 40px;
-    }
-    
-    /* Extra bottom padding for main content so it doesn't get hidden behind the footer */
-    .content {
-      padding-bottom: 80px;
-    }
-  </style>
+    integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+  <!--Link to custom CSS-->
+  <link href="../styles/style.css" rel="stylesheet">
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-firestore.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-auth.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/ui/4.8.1/firebase-ui-auth.js"></script>
+  <link type="text/css" rel="stylesheet" href="https://www.gstatic.com/firebasejs/ui/4.8.1/firebase-ui-auth.css" />
+
 </head>
 <body>
-  <!-- Responsive Navbar with Blue Background (only a brand/logo) -->
-  <nav class="navbar navbar-expand-lg navbar-dark">
-    <div class="container-fluid">
-      <!-- Navbar brand/logo -->
-      <a class="navbar-brand" href="#">
-        <img src="logo-image-put-in-here.png" alt="PowerBankLogo" height="36" class="d-inline-block align-text-top">
-      </a>
-      <!-- You can include additional navbar content here if needed -->
-    </div>
-  </nav>
-  
   <!-- Main Content -->
-  <div class="container content my-5">
-    <!-- Dynamic Greeting -->
-    <h1 id="greeting"></h1>
-    <p>This greeting changes based on the time of day.</p>
-  </div>
-  <div class="container col-xl-10 col-xxl-8 px-4 py-5">
-    <div class="row align-items-center g-lg-5 py-5">
-      <div class="col-lg-7 text-center text-lg-start">
-        <h1 class="display-4 fw-bold lh-1 mb-3">Vertically centered hero sign-up form</h1>
-        <p class="col-lg-10 fs-4">Below is an example form built entirely with Bootstrap’s form controls. Each required form group has a validation state that can be triggered by attempting to submit the form without completing it.</p>
+  <header class="d-flex flex-wrap justify-content-center py-3 mb-4 border-bottom">
+    <a href="index.html" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-dark text-decoration-none">
+      <img class="bi me-2" width="40" height="32" src="/images/battery-buddy.png" alt="logo">
+      <span class="fs-4">Battery Buddy</span>
+    </a>
+    <ul class="nav nav-pills">
+      <li class="nav-item"><a href="#" class="nav-link">FAQs</a></li>
+      <li class="nav-item"><a href="#" class="nav-link">About Us</a></li>
+      <li class="nav-item"><a href="#" class="nav-link">Login</a></li>
+      <button type="button" class="btn btn-primary">Sign-up</button>
+    </ul>
+  </header>
+  <div class="container col-xxl-8 px-4 py-5">
+    <div class="row flex-lg-row-reverse align-items-center g-5 py-5">
+      <div class="col-10 col-sm-8 col-lg-6">
+        <img src="/images/preview.png" class="d-block mx-lg-auto img-fluid" alt="Map of rentals" width="700" height="500" loading="lazy">
       </div>
-      <div class="col-md-10 mx-auto col-lg-5">
-        <form class="p-4 p-md-5 border rounded-3 bg-light">
-          <div class="form-floating mb-3">
-            <input type="email" class="form-control" id="floatingInput" placeholder="name@example.com">
-            <label for="floatingInput">Email address</label>
-          </div>
-          <div class="form-floating mb-3">
-            <input type="password" class="form-control" id="floatingPassword" placeholder="Password">
-            <label for="floatingPassword">Password</label>
-          </div>
-          <div class="checkbox mb-3">
-            <label>
-              <input type="checkbox" value="remember-me"> Remember me
-            </label>
-          </div>
-          <button class="w-100 btn btn-lg btn-primary" type="submit">Sign up</button>
-          <hr class="my-4">
-          <small class="text-muted">By clicking Sign up, you agree to the terms of use.</small>
-        </form>
+      <div class="col-lg-6">
+        <h1 class="display-5 fw-bold lh-1 mb-3">Get a portable battery wherever you are</h1>
+        <p class="lead">Rent a portable battery from users all around the globe. Stay charged for cheap wherever, whenever. Or sign up and lend out your portable battery and get paid while doing so.</p>
+        <div class="d-grid gap-2 d-md-flex justify-content-md-start">
+          <button type="button" class="btn btn-primary btn-lg px-4 me-md-2" onclick="window.location.href='login.html'">Rent</button>
+          <button type="button" class="btn btn-outline-secondary btn-lg px-4" onclick="window.location.href='login.html'">Lend</button>
+        </div>
       </div>
     </div>
   </div>
-  
-  <!-- Fixed Footer -->
-  <div class="footer">
-    <a href="home.html">
-      <div>
-        <img src="./images/home.png" alt="Home">
-        <span>HOME</span>
-      </div>
-    </a>
-    <a href="charge.html">
-      <div>
-        <img src="./images/bolt.png" alt="Charge">
-        <span>CHARGE</span>
-      </div>
-    </a>
-    <a href="alerts.html">
-      <div>
-        <img src="./images/bell.png" alt="Alerts">
-        <span>ALERTS</span>
-      </div>
-    </a>
-  </div>
-  
-  <!-- JavaScript to update the greeting based on time -->
-  <script>
-    function updateGreeting() {
-      const now = new Date();
-      const hour = now.getHours();
-      let greeting = '';
-      
-      if (hour < 12) {
-        greeting = 'Good morning';
-      } else if (hour < 18) {
-        greeting = 'Good afternoon';
-      } else {
-        greeting = 'Good evening';
-      }
-      
-      const username = 'username'; // Replace 'username' with dynamic content if needed.
-      document.getElementById('greeting').innerText = ${greeting}, ${username}!;
-    }
-    
-    updateGreeting();
-  </script>
   
   <!-- Bootstrap JS Bundle (includes Popper) -->
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
-          integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+    integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+  <script src="https://www.gstatic.com/firebasejs/ui/4.8.1/firebase-ui-auth.js"></script> 
+  <script src="../scripts/api.js"></script> 
+  <script src="../scripts/main.js"></script>
+  <script src="../scripts/authentication.js"></script> 
+      
 </body>
 </html>

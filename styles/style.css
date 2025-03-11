@@ -1,44 +1,30 @@
 /*CSS HEX -- COLOUR SCHEME
 --bittersweet: #f05d5eff;
---goldenrod: #d19c1dff;
+--goldenrod: #d19c1dff; HOVER: #f6d98c
 --dark-spring-green: #226f54ff;
 --davys-gray: #565254ff;
 --white: #ffffffff;
  */
-
-
-body {
+body, html{
     margin: 0;
     padding: 0;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-    background-color: #f8f8f8;
+    background-color: white;
 }
-.footer {
-    position: fixed;
-    bottom: 0;
-    width: 100%;
-    background: #c7c7c7;
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
-    padding: 10px 0;
-    border-top: 3px solid #9b5ff9;
+.btn{
+    background-color: #F05D5E;
+    border: none;
+    color: white;
 }
-.footer a {
-    text-decoration: none;
-    color: black;
-    text-align: center;
-    font-family: Arial, sans-serif;
+.btn:hover{
+    background-color: #f99393;
 }
-.footer a div {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+.nav-item a{
+    color: #d19c1d;
+    font-weight: bold;
 }
-.footer a img {
-    width: 40px;
-    height: 40px;
+.nav-item a:hover{
+    color: #f6d98c;
+}
+header{
+    background-color: #226f54ff;
 }
