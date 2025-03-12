@@ -48,13 +48,19 @@ header{
     }
     .navbar-mobile{
         display: flex;
+        flex-direction: column;
         background-color: #F05D5E;
-        justify-content: space-between;
+        justify-content: space-around;
         position: fixed;
-        flex-wrap: nowrap;
         width: 100%;
-        height: 100%;
     }
-    
+    .navbar-mobile ul{
+        padding: 0;
+        display: flex;
+        justify-content: space-around;
+        flex-direction: row;
+        width: 100%;
+        list-style: none;
+    }
     
 }
