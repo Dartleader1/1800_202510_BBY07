@@ -11,6 +11,10 @@ body, html{
     padding: 0;
     background-color: white;
 }
+#map{
+    width: 100%;
+    height: 100%;
+}
 .btn{
     background-color: #F05D5E;
     border: none;
@@ -39,28 +43,10 @@ header{
     flex-direction: column;
     justify-content: space-around;
 }
-.navbar-mobile{
-    display: none;
-}
 @media screen and (max-width: 600px){
-    .d-flex{
-        display: none !important;
-    }
-    .navbar-mobile{
-        display: flex;
-        flex-direction: column;
-        background-color: #F05D5E;
-        justify-content: space-around;
-        position: fixed;
+    #map{
         width: 100%;
-    }
-    .navbar-mobile ul{
-        padding: 0;
-        display: flex;
-        justify-content: space-around;
-        flex-direction: row;
-        width: 100%;
-        list-style: none;
+        height: 100%;
     }
     
 }
