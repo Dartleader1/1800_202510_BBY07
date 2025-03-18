@@ -1,7 +1,8 @@
+//uploads battery information to the database
 function saveBattery() {
     console.log("Saving battery for user");
     let batteryName = document.getElementById("batteryName").value;
-    // let batteryPhoto = document.getElementById("batteryPhoto").value;
+    // let batteryPhoto = document.getElementById("batteryPhoto").value; UNIMPLEMENTED
     let batteryCable = document.getElementById("batteryCable").value;
     let batteryPort = document.getElementById("batteryPort").value;
     let batteryCapacity = document.getElementById("batteryCapacity").value;

@@ -1,18 +1,3 @@
-function writeBattery() {
-    //define a variable for the collection you want to create in Firestore to populate data
-    var batteriesRef = db.collection("batteries");
-
-    batteriesRef.add({
-        code: "BBY01",
-        name: "Burnaby Lake Park Trail", //replace with your own city?
-        city: "Burnaby",
-        province: "BC",
-				details: "A lovely place for lunch walk",
-        lat: 49.2467097082573,
-        lng: -122.9187029619698,
-        last_updated: firebase.firestore.FieldValue.serverTimestamp()  //current system time
-    });
-}
 function getNameFromAuth() {
   firebase.auth().onAuthStateChanged(user => {
       // Check if a user is signed in:
