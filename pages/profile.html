@@ -1,64 +1,105 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <title>Profile - My BCIT Project</title>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <!-- Bootstrap Library CSS CDN go here -->
-  <!-- Bootstrap Library JS CDN go here -->
-  <!-- Other libraries go here -->
-  <link rel="stylesheet" href="./styles/style.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Profile - Battery Buddy</title>
+
+  <!-- Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="../styles/style.css" rel="stylesheet">
+
+  <!-- Firebase & jQuery -->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-firestore.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-auth.js"></script>
+
 </head>
 <body>
-  <header>
-    <h1>Profile</h1>
-  </header>
-  <main>
-    <p>This is the placeholder for the Profile page.</p>
-  </main>
-  
-  <!-- Navigation Footer -->
-  <div class="footer">
-      <a href="home.html">
-          <div>
-              <img src="./images/home.png" alt="Home">
-              <span>HOME</span>
-          </div>
-      </a>
-      <a href="charge.html">
-          <div>
-              <img src="./images/bolt.png" alt="Charge">
-              <span>CHARGE</span>
-          </div>
-      </a>
-      <a href="alerts.html">
-          <div>
-              <img src="./images/bell.png" alt="Alerts">
-              <span>ALERTS</span>
-          </div>
-      </a>
-      <a href="profile.html">
-          <div>
-              <img src="./images/profile.png" alt="Profile">
-              <span>PROFILE</span>
-          </div>
-      </a>
-      <a href="history.html">
-          <div>
-              <img src="./images/history.png" alt="History">
-              <span>HISTORY</span>
-          </div>
-      </a>
-      <a href="messages.html">
-          <div>
-              <img src="./images/messages.png" alt="Messages">
-              <span>MESSAGES</span>
-          </div>
-      </a>
+
+  <!-- TOP NAVBAR -->
+  <nav class="navbar navbar-dark bg-dark">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="#">Profile</a>
+      <img src="../images/default-profile.png" id="navProfilePic" class="rounded-circle" width="40" height="40" alt="Profile"
+        style="cursor:pointer;" onclick="location.href='profile.html'">
+    </div>
+  </nav>
+
+  <!-- PROFILE PAGE CONTENT -->
+  <div class="container mt-4 text-center">
+    <!-- Profile Picture Section -->
+    <div>
+      <img id="profilePic" src="../images/default-profile.png" class="rounded-circle border" width="120" height="120" 
+        alt="Profile Picture" style="cursor:pointer;">
+      <p><small>Click to change</small></p>
+      <input type="file" id="profilePicInput" accept="image/*" style="display:none;">
+    </div>
+
+    <!-- User Information Section -->
+    <div class="card p-3 mt-3">
+      <h4>Personal Information</h4>
+      <div class="list-group">
+        <button class="list-group-item list-group-item-action" onclick="editInfo('name')">Name: <span id="userName">John Doe</span></button>
+        <button class="list-group-item list-group-item-action" onclick="editInfo('gender')">Gender: <span id="userGender">Male</span></button>
+        <button class="list-group-item list-group-item-action" onclick="editInfo('location')">Location: <span id="userLocation">New York</span></button>
+        <button class="list-group-item list-group-item-action" onclick="editInfo('intro')">Intro: <span id="userIntro">Hello, I love technology!</span></button>
+      </div>
+    </div>
   </div>
-  
-  <!-- Your own JavaScript functions go here -->
-  <!-- <script src="./scripts/script.js"></script> -->
+
+  <!-- BOTTOM NAVBAR -->
+  <nav class="navbar fixed-bottom navbar-expand-sm navbar-dark bg-dark">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="main.html">Home</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarCollapse">
+        <ul class="navbar-nav">
+          <li class="nav-item"><a class="nav-link" href="rent.html">Rent</a></li>
+          <li class="nav-item"><a class="nav-link" href="lend.html">Loan</a></li>
+          <li class="nav-item"><a class="nav-link" href="profile.html"><img src="../images/profile.png" width="20"> Profile</a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <!-- JavaScript -->
+  <script>
+    document.getElementById('profilePic').addEventListener('click', function () {
+      document.getElementById('profilePicInput').click();
+    });
+
+    document.getElementById('profilePicInput').addEventListener('change', function (event) {
+      const file = event.target.files[0];
+      if (file) {
+        const reader = new FileReader();
+        reader.onload = function (e) {
+          document.getElementById('profilePic').src = e.target.result;
+          document.getElementById('navProfilePic').src = e.target.result;
+        };
+        reader.readAsDataURL(file);
+      }
+    });
+
+    function editInfo(field) {
+      const newValue = prompt(`Enter new ${field}:`);
+      if (newValue) {
+        document.getElementById(`user${capitalize(field)}`).textContent = newValue;
+      }
+    }
+
+    function capitalize(str) {
+      return str.charAt(0).toUpperCase() + str.slice(1);
+    }
+  </script>
+
+  <!-- Bootstrap JS -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+
 </body>
 </html>
+
 
