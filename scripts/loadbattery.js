@@ -14,14 +14,14 @@ function populateBatteries() {
                 var cable = doc.data().batteryCable;
                 var capacity = doc.data().batteryCapacity;
                 var port = doc.data().batteryPort;
-                var user = doc.data().userID;
+                var user = doc.data().name;
 
                 let batteryCards = batteryCard.content.cloneNode(true);
                 batteryCards.querySelector(".batteryName").innerHTML = title;
                 batteryCards.querySelector(".batteryCable").innerHTML = `Cable Type: ${cable}`;
                 batteryCards.querySelector(".batteryCapacity").innerHTML = `BatteryCapacity: ${capacity} mAh`;
                 batteryCards.querySelector(".batteryPort").innerHTML = `Ports: ${port} `;
-                batteryCards.querySelector(".batteryPort").innerHTML = `User: ${user} `;
+                batteryCards.querySelector(".userName").innerHTML = `User: ${user} `;
 
                 batteryCardGroup.appendChild(batteryCards);
             });

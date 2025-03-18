@@ -13,6 +13,8 @@ var user = firebase.auth().currentUser;
     if (user) {
         var currentUser = db.collection("users").doc(user.uid);
         var userID = user.uid;
+        var displayName = user.displayName;
+
 
         // Get the document for the current user.
         db.collection("batteries").add({
@@ -22,6 +24,7 @@ var user = firebase.auth().currentUser;
             batteryPort: batteryPort,
             batteryCapacity: batteryCapacity,
             userID: userID,
+            name: displayName,
             timestamp: firebase.firestore.FieldValue.serverTimestamp()
         }).then(() => {
             window.location.href = "main.html"; // Redirect to main page
