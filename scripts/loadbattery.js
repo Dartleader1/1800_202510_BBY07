@@ -3,10 +3,8 @@ function populateReviews() {
     let hikeCardTemplate = document.getElementById("reviewCardTemplate");
     let hikeCardGroup = document.getElementById("reviewCardGroup");
 
-    let params = new URL(window.location.href); // Get the URL from the search bar
-    let hikeID = params.searchParams.get("docID");
+    let params = new URL(window.location.href);
 
-    // Double-check: is your collection called "Reviews" or "reviews"?
     db.collection("batteries")
         .get()
         .then((allReviews) => {
@@ -14,16 +12,18 @@ function populateReviews() {
             console.log(reviews);
             reviews.forEach((doc) => {
                 var title = doc.data().batteryName;
-                var level = doc.data().batteryCable;
-                var season = doc.data().batteryCapacity;
-                var description = doc.data().batteryPort;
-                var scrambled = doc.data().userID;
+                var cable = doc.data().batteryCable;
+                var capacity = doc.data().batteryCapacity;
+                var port = doc.data().batteryPort;
+                var user = doc.data().userID;
 
                 let reviewCard = hikeCardTemplate.content.cloneNode(true);
                 reviewCard.querySelector(".batteryName").innerHTML = title;
-                reviewCard.querySelector(".batteryCable").innerHTML = `Cable Type: ${level}`;
-                reviewCard.querySelector(".batteryCapacity").innerHTML = `BatteryCapacity: ${season} mAh`;
-                reviewCard.querySelector(".batteryPort").innerHTML = `Ports: ${description} `;
+                reviewCard.querySelector(".batteryCable").innerHTML = `Cable Type: ${cable}`;
+                reviewCard.querySelector(".batteryCapacity").innerHTML = `BatteryCapacity: ${capacity} mAh`;
+                reviewCard.querySelector(".batteryPort").innerHTML = `Ports: ${port} `;
+                reviewCard.querySelector(".batteryPort").innerHTML = `User: ${user} `;
+
 
                 hikeCardGroup.appendChild(reviewCard);
             });
