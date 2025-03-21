@@ -1,205 +1,123 @@
+mapboxgl.accessToken = 'pk.eyJ1IjoianVzdGlucmMiLCJhIjoiY204NHVldm9xMjlwNjJzcHlucHZ6ZTQyYSJ9.71yZqTl1XmBdfK3scyPyzA';
+
 function showMap() {
-    //------------------------------------------
-    // Defines and initiates basic mapbox data
-    //------------------------------------------
-    // TO MAKE THE MAP APPEAR YOU MUST
-    // ADD YOUR ACCESS TOKEN FROM
-    // https://account.mapbox.com
-    mapboxgl.accessToken = 'pk.eyJ1IjoianVzdGlucmMiLCJhIjoiY204NHVldm9xMjlwNjJzcHlucHZ6ZTQyYSJ9.71yZqTl1XmBdfK3scyPyzA';
     const map = new mapboxgl.Map({
-        container: 'map', // Container ID
-        style: 'mapbox://styles/mapbox/streets-v11', // Styling URL
-        center: [-123.001549, 49.253304], // Starting position
-        zoom: 14 // Starting zoom
+        container: 'map',
+        style: 'mapbox://styles/mapbox/streets-v11',
+        center: [-122.9641, 49.2513], // Centered around Burnaby
+        zoom: 13
     });
 
-    // Add user controls to map, zoom bar
     map.addControl(new mapboxgl.NavigationControl());
 
-    //------------------------------------------------
-    // Add listener for when the map finishes loading.
-    // After loading, we can add map features
-    //------------------------------------------------
     map.on('load', () => {
-
-        //---------------------------------
-        // Add interactive pins for the hikes
-        //---------------------------------
-        addHikePins(map);
-
-        //--------------------------------------
-        // Add interactive pin for the user's location
-        //--------------------------------------
         addUserPin(map);
-        
+        addRedPins(map);
     });
+
+    adjustMapHeight();
+    window.addEventListener("resize", adjustMapHeight);
 }
 
-showMap();   // Call it! 
-
-function addHikePins(map){
-    map.loadImage(
-        'https://cdn.iconscout.com/icon/free/png-256/pin-locate-marker-location-navigation-16-28668.png',
-        (error, image) => {
-            if (error) throw error;
-
-            // Add the image to the map style.
-            map.addImage('eventpin', image); // Pin Icon
-
-            // READING information from "events" collection in Firestore
-            db.collection('batteries').get().then(allEvents => {
-                const features = []; // Defines an empty array for information to be added to
-
-                allEvents.forEach(doc => {
-                    lat = doc.data().lat;
-                    lng = doc.data().lng;
-                    console.log(lat, lng);
-                    coordinates = [lng, lat];
-                    console.log(coordinates);
-                    // Coordinates
-                    event_name = doc.data().name; // Event Name
-                    preview = doc.data().details; // Text Preview
-                    // img = doc.data().posterurl; // Image
-                    // url = doc.data().link; // URL
-
-                    // Pushes information into the features array
-                    features.push({
-                        'type': 'Feature',
-                        'properties': {
-                            'description': 
-                            `<strong>${event_name}</strong><p>${preview}</p> 
-                            <br> <a href="/hike.html?id=${doc.id}" target="_blank" 
-                            title="Opens in a new window">Read more</a>`
-                        },
-                        'geometry': {
-                            'type': 'Point',
-                            'coordinates': coordinates
-                        }
-                    });
-                });
-
-                // Adds features (in our case, pins) to the map
-                // "places" is the name of this array of features
-                map.addSource('places', {
-                    'type': 'geojson',
-                    'data': {
-                        'type': 'FeatureCollection',
-                        'features': features
-                    }
-                });
-
-                // Creates a layer above the map displaying the pins
-                map.addLayer({
-                    'id': 'places',
-                    'type': 'symbol',
-                    'source': 'places',
-                    'layout': {
-                        'icon-image': 'eventpin', // Pin Icon
-                        'icon-size': 0.1, // Pin Size
-                        'icon-allow-overlap': true // Allows icons to overlap
-                    }
-                });
-
-                // When one of the "places" markers are clicked,
-                // create a popup that shows information 
-                // Everything related to a marker is save in features[] array
-                map.on('click', 'places', (e) => {
-                    // Copy coordinates array.
-                    const coordinates = e.features[0].geometry.coordinates.slice();
-                    const description = e.features[0].properties.description;
-
-                    // Ensure that if the map is zoomed out such that multiple 
-                    // copies of the feature are visible, the popup appears over 
-                    // the copy being pointed to.
-                    while (Math.abs(e.lngLat.lng - coordinates[0]) > 180) {
-                        coordinates[0] += e.lngLat.lng > coordinates[0] ? 360 : -360;
-                    }
-
-                    new mapboxgl.Popup()
-                        .setLngLat(coordinates)
-                        .setHTML(description)
-                        .addTo(map);
-                });
-
-                // Change the cursor to a pointer when the mouse is over the places layer.
-                map.on('mouseenter', 'places', () => {
-                    map.getCanvas().style.cursor = 'pointer';
-                });
-
-                // Defaults cursor when not hovering over the places layer
-                map.on('mouseleave', 'places', () => {
-                    map.getCanvas().style.cursor = '';
-                });
-            });
-        }
-    );
-} 
-//-----------------------------------------------------
-// Add pin for showing where the user is.
-// This is a separate function so that we can use a different
-// looking pin for the user.  
-// This version uses a pin that is just a circle. 
-//------------------------------------------------------
-function addUserPinCircle(map) {
-
-    // Adds user's current location as a source to the map
-    navigator.geolocation.getCurrentPosition(position => {
-        const userLocation = [position.coords.longitude, position.coords.latitude];
-        console.log(userLocation);
-        if (userLocation) {
-            map.addSource('userLocation', {
-                'type': 'geojson',
-                'data': {
-                    'type': 'FeatureCollection',
-                    'features': [{
-                        'type': 'Feature',
-                        'geometry': {
-                            'type': 'Point',
-                            'coordinates': userLocation
-                        },
-                        'properties': {
-                            'description': 'Your location'
-                        }
-                    }]
-                }
-            });
-
-            // Creates a layer above the map displaying the pins
-            // Add a layer showing the places.
-            map.addLayer({
-                'id': 'userLocation',
-                'type': 'circle', // what the pins/markers/points look like
-                'source': 'userLocation',
-                'paint': { // customize colour and size
-                    'circle-color': 'blue',
-                    'circle-radius': 6,
-                    'circle-stroke-width': 2,
-                    'circle-stroke-color': '#ffffff'
-                }
-            });
-
-            // Map On Click function that creates a popup displaying the user's location
-            map.on('click', 'userLocation', (e) => {
-                // Copy coordinates array.
-                const coordinates = e.features[0].geometry.coordinates.slice();
-                const description = e.features[0].properties.description;
-
-                new mapboxgl.Popup()
-                    .setLngLat(coordinates)
-                    .setHTML(description)
-                    .addTo(map);
-            });
-
-            // Change the cursor to a pointer when the mouse is over the userLocation layer.
-            map.on('mouseenter', 'userLocation', () => {
-                map.getCanvas().style.cursor = 'pointer';
-            });
-
-            // Defaults
-            // Defaults cursor when not hovering over the userLocation layer
-            map.on('mouseleave', 'userLocation', () => {
-                map.getCanvas().style.cursor = '';
-            });
-        }
-    });
+// Adjusts map height based on screen size
+function adjustMapHeight() {
+    const mapElement = document.getElementById("map");
+    if (window.innerWidth < 768) {
+        mapElement.style.height = "33vh";
+    } else {
+        mapElement.style.height = "100vh";
+    }
 }
+
+// Adds a blue pin for BCIT Burnaby Campus (User Location)
+function addUserPin(map) {
+    const userCoordinates = [-122.9641, 49.2505];
+
+    new mapboxgl.Marker({ color: "blue" })
+        .setLngLat(userCoordinates)
+        .setPopup(new mapboxgl.Popup().setHTML("<strong>Your Location: BCIT Burnaby Campus</strong>"))
+        .addTo(map);
+}
+
+// Add red pins for battery locations
+function addRedPins(map) {
+    const userCoordinates = [-122.9641, 49.2505]; // BCIT Burnaby Campus
+    const locations = [
+        {
+            coordinates: [-122.9975, 49.2664],
+            name: "The Amazing Brentwood",
+            batteryType: "USB A"
+        },
+        {
+            coordinates: [-122.9753, 49.2485],
+            name: "Burnaby Hospital",
+            batteryType: "Type C"
+        },
+        {
+            coordinates: [-122.9696, 49.2480],
+            name: "BCIT Parking Lot L",
+            batteryType: "USB B"
+        },
+        {
+            coordinates: [-123.0006, 49.2276],
+            name: "Cineplex Cinemas Metropolis",
+            batteryType: "Micro USB"
+        }
+    ];
+
+    locations.forEach(location => {
+        // Calculate distance (approximate using Haversine formula)
+        location.distance = calculateDistance(userCoordinates, location.coordinates);
+
+        new mapboxgl.Marker({ color: "red" })
+            .setLngLat(location.coordinates)
+            .setPopup(new mapboxgl.Popup().setHTML(`<strong>${location.name}</strong><br>Battery Type: ${location.batteryType}<br>Distance: ${location.distance.toFixed(2)} km`))
+            .addTo(map);
+    });
+
+    // Sort locations by distance (closest to farthest)
+    locations.sort((a, b) => a.distance - b.distance);
+
+    // Display battery list on the bottom-right (for desktop users)
+    if (window.innerWidth >= 768) {
+        displayBatteryList(locations);
+    }
+}
+
+// Function to calculate distance between two coordinates (Haversine formula)
+function calculateDistance(coord1, coord2) {
+    function toRad(value) {
+        return value * Math.PI / 180;
+    }
+
+    const R = 6371; // Radius of Earth in km
+    const dLat = toRad(coord2[1] - coord1[1]);
+    const dLon = toRad(coord2[0] - coord1[0]);
+    const lat1 = toRad(coord1[1]);
+    const lat2 = toRad(coord2[1]);
+
+    const a = Math.sin(dLat / 2) * Math.sin(dLat / 2) +
+              Math.cos(lat1) * Math.cos(lat2) *
+              Math.sin(dLon / 2) * Math.sin(dLon / 2);
+    const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
+    return R * c;
+}
+
+// Display the list of available batteries
+function displayBatteryList(locations) {
+    let batteryList = document.createElement("div");
+    batteryList.id = "battery-list";
+    batteryList.innerHTML = "<h3>Available Battery Around You</h3>";
+
+    locations.forEach(location => {
+        let item = document.createElement("div");
+        item.classList.add("battery-item");
+        item.innerHTML = `<strong>${location.name}</strong><br>Battery Type: ${location.batteryType}<br>Distance: ${location.distance.toFixed(2)} km`;
+        batteryList.appendChild(item);
+    });
+
+    document.body.appendChild(batteryList);
+}
+
+// Initialize the map
+showMap();
