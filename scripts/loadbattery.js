@@ -1,6 +1,5 @@
 // displays batteries from firebase in browser
 function populateBatteries() {
-    console.log("test");
     let batteryCard = document.getElementById("BatteryCard");
     let batteryCardGroup = document.getElementById("batteryCardGroup");
 
