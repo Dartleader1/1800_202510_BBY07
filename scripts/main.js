@@ -12,6 +12,11 @@ function getNameFromAuth() {
           // No user is signed in.
           console.log ("No user is logged in");
       }
+      if (user) {
+          // User is signed in.
+          // Do something for the user here.
+          console.log($('#navbarPlaceholder').load('/text/nav_after_login.html'));
+      }
   });
 }
 getNameFromAuth();
