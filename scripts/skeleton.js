@@ -21,7 +21,13 @@ loadSkeleton(); //invoke the function
 function showDropDown(){
     if (document.getElementById("profileDropDown").style.display == "block") {
     document.getElementById("profileDropDown").style.display = "none"
+    document.getElementById("close-profile").style.display = "none";
+
     } else {
         document.getElementById("profileDropDown").style.display = "block";
+        document.getElementById("close-profile").style.display = "block";
+
+        getNameFromAuth();
+
     }
 };
