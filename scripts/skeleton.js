@@ -3,7 +3,6 @@
 // (navbar, footer, and other things) into html doc. 
 //---------------------------------------------------
 function loadSkeleton() {
-
     firebase.auth().onAuthStateChanged(function (user) {
         if (user) {                   
 		        // If the "user" variable is not null, then someone is logged in
@@ -16,4 +15,13 @@ function loadSkeleton() {
         }
     });
 }
-loadSkeleton(); //invoke the function   
+loadSkeleton(); //invoke the function
+
+//show login dropdown
+function showDropDown(){
+    if (document.getElementById("profileDropDown").style.display == "block") {
+    document.getElementById("profileDropDown").style.display = "none"
+    } else {
+        document.getElementById("profileDropDown").style.display = "block";
+    }
+};
