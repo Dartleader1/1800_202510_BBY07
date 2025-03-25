@@ -27,8 +27,11 @@
 
   <main>
     <div class="py-5 text-center">
-      <img class="d-block mx-auto mb-4" src="/images/house-solid.svg" alt="" width="144" height="114">
-    </div>
+    <label for="fileInput" class="custom-file-upload" onclick="uploadImage()">
+      <img class="d-block mx-auto" id="uploadPhoto" src="/images/default.jpg" alt="profile picture" width="144" height="114">
+    </label>
+    <input type="file" id="fileInput" accept="image/*">
+  </div>
 
       <div class="col-md-7 col-lg-8 container">
         <h4 class="mb-3">Profile Information</h4>
@@ -56,7 +59,7 @@
   </div>
           <button type="button" class="btn btn-secondary w-100 btn-lg" onclick="editUserInfo()">Edit</button>
           <hr class="my-4">
-          <button class="w-100 btn btn-primary btn-lg" type="submit" onclick="saveUserInfo()">Save</button>
+          <button class="w-100 btn btn-primary btn-lg" type="submit" onclick="saveUserInfo()"  onclick="uploadImage()">Save</button>
         </form>
       </div>
     </div>

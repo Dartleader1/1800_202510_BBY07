@@ -12,13 +12,13 @@ function saveBattery() {
         if (user) {
             var currentUser = db.collection("users").doc(user.uid);
             var userID = user.uid;
-            var displayName = user.displayName;
+            var displayName = user.displayName; 
 
             // Use device's location service
-                 navigator.geolocation.getCurrentPosition((position) => {
+                //  navigator.geolocation.getCurrentPosition((position) => {
                 // Get location details
-                const latitude = position.coords.latitude;
-                const longitude = position.coords.longitude;
+                // const latitude = position.coords.latitude;
+                // const longitude = position.coords.longitude;
         
             // Get the document for the current user.
             db.collection("batteries").add({
@@ -30,8 +30,8 @@ function saveBattery() {
                 userID: userID,
                 name: displayName,
                 timestamp: firebase.firestore.FieldValue.serverTimestamp(),
-                latitude: latitude,
-                longitude: longitude,
+                // latitude: latitude,
+                // longitude: longitude,
                 last_updated: firebase.firestore.FieldValue.serverTimestamp() // Adds current system time
             }).then((doc) => {
                 console.log("Post document added with ID:", doc.id);
@@ -41,9 +41,9 @@ function saveBattery() {
             }).catch((error) => {
                 console.error("Error adding document:", error);
             });
-        }, (error) => {
+             (error) => {
             console.error("Error retrieving location:", error);
-        });
+        };
     } else {
         console.log("Error: No user is logged in");
     }
