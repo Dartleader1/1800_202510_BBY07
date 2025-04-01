@@ -47,8 +47,6 @@ function editUserInfo() {
  }
 
  function saveUserInfo() {
-    //enter code here
-
     //a) get user entered values
     userName = document.getElementById('nameInput').value;       //get the value of the field with id="nameInput"
     userEmail = document.getElementById('emailInput').value;     //get the value of the field with id="schoolInput"

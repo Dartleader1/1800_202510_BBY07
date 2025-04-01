@@ -25,7 +25,25 @@
   <div class="batteryList container">
     <h1>Your batteries: </h1>
     <div id="batteryList">loading..</div>
+
+<!-- Templates for general use, not displayed -->
+    <template id="cardtemplate">
+      <div id="posts-go-here"></div>
+        <div class="card py-2 mx-2" style="width: 18rem;">
+            <div class="card-body">
+                <h5 class="card-title">Card title</h5>
+                <p class="card-text">Some text</p>
+                <i class="favourite fa fas-heart">
+            </div>
+        </div>
+    </template>
+
+
     <div id="addBattery" onclick="addBattery()" class="batteryCard">
+      <div class="card-container">
+        <div id="batteryCardGroup" class="row row-cols-auto">
+        </div>
+    </div>
       <p>Add New Battery</p>
     </div>
   </div>
