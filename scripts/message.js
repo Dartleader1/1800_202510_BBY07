@@ -7,16 +7,9 @@ const clearChatBtn = document.querySelector('.clear-chat-button');
 
 const userName = "Peter";
 let currentFriendName = '';
-let currentChatPath = ''; // e.g., "Peter and Drone_AI"
+let currentChatPath = '';
 
 const db = firebase.firestore();
-
-// Friend list(hard cod)
-const friends = {
-  "uid_alice": "Alice",
-  "uid_bob": "Bob",
-  "uid_drone": "Drone_AI"
-};
 
 function getChatPath(a, b) {
   return [a, b].sort().join(' and ');
@@ -24,40 +17,50 @@ function getChatPath(a, b) {
 
 function loadFriends() {
   friendList.innerHTML = '';
-  Object.entries(friends).forEach(([friendId, friendName]) => {
-    const li = document.createElement('li');
-    li.classList.add('friend-item');
-    li.setAttribute('data-id', friendId);
-    li.setAttribute('data-name', friendName);
-    li.innerHTML = `<strong>${friendName}</strong><br><small>loading...</small>`;
-    friendList.appendChild(li);
 
-    const chatPath = getChatPath(userName, friendName);
+  db.collection("users").get().then(snapshot => {
+    snapshot.forEach(doc => {
+      const data = doc.data();
+      const friendId = doc.id;
+      const friendName = data.name || "Unnamed";
+      const friendEmail = data.email || "";
 
-    db.collection("messages")
-      .doc(chatPath)
-      .collection("chat")
-      .orderBy("timestamp", "desc")
-      .limit(1)
-      .onSnapshot(snapshot => {
-        snapshot.forEach(doc => {
-          const msg = doc.data();
-          li.innerHTML = `<strong>${friendName}</strong><br><small>${msg.sender}: ${msg.text}</small>`;
+      const li = document.createElement('li');
+      li.classList.add('friend-item');
+      li.setAttribute('data-id', friendId);
+      li.setAttribute('data-name', friendName);
+      li.innerHTML = `<strong>${friendName}</strong><br><small>loading...</small>`;
+      friendList.appendChild(li);
+
+      const chatPath = getChatPath(userName, friendName);
+
+      db.collection("messages")
+        .doc(chatPath)
+        .collection("chat")
+        .orderBy("timestamp", "desc")
+        .limit(1)
+        .onSnapshot(snapshot => {
+          snapshot.forEach(doc => {
+            const msg = doc.data();
+            li.innerHTML = `<strong>${friendName}</strong><br><small>${msg.sender}: ${msg.text}</small>`;
+          });
         });
-      });
 
-    li.onclick = () => {
-      currentFriendName = friendName;
-      currentChatPath = getChatPath(userName, friendName);
+      li.onclick = () => {
+        currentFriendName = friendName;
+        currentChatPath = getChatPath(userName, friendName);
 
-      chatHeader.textContent = `Chating with ${friendName} `;
-      chatMessages.innerHTML = '';
-      chatInputForm.style.display = 'flex';
-      clearChatBtn.style.display = 'block';
-      chatInput.placeholder = `Wating for ur input ${userName}?`;
+        chatHeader.textContent = `Chating with ${friendName}`;
+        chatMessages.innerHTML = '';
+        chatInputForm.style.display = 'flex';
+        clearChatBtn.style.display = 'block';
+        chatInput.placeholder = `Wating for ur input ${userName}?`;
 
-      loadChat(currentChatPath);
-    };
+        loadChat(currentChatPath);
+      };
+    });
+  }).catch(error => {
+    console.error("Error fetching users:", error);
   });
 }
 
