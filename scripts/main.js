@@ -13,7 +13,6 @@ var currentUser;
 
             // show user pfp when also showing name
            displayProfileImage(userPhoto);
-           displayProfileEditImage(userPhoto);
 
 
            document.getElementById("name-goes-here").innerText = userName
@@ -23,12 +22,6 @@ var currentUser;
      }
    });
  }
-
-
- function displayProfileEditImage(base64String) {
-  var imgElement = document.getElementById("uploadPhoto");
-  imgElement.src = "data:image/png;base64," + base64String; 
-}
  function displayProfileImage(base64String) {
   var imgElement = document.getElementById("userpfp");
   imgElement.src = "data:image/png;base64," + base64String; 

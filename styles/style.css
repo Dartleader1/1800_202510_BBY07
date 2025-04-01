@@ -12,7 +12,30 @@ body, html {
     padding: 0;
     background-color: white;
 }
-
+/* loading screen
+.loader-background {
+    background-color: rgb(225, 222, 222);
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    height: 100%;
+}
+.loader {
+    border: 16px solid #f3f3f3; /* Light grey */
+    /* border-top: 16px solid #3498db; Blue */
+    /* display: block;
+    margin-left: auto;
+    margin-right: auto;
+    border-radius: 50%;
+    width: 120px;
+    height: 120px;
+    margin-bottom: 100px;
+    animation: spin 2s linear infinite;
+  } */
+  /* @keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+  } */
 /* MAP STYLES */
 #map {
     height: 90vh !important;
@@ -29,6 +52,13 @@ body, html {
     position: absolute;
     z-index: 10;
     right: 0;
+}
+.fs-2{
+    font-weight: bolder;
+    
+}
+.preview{
+    border-radius: 5%;
 }
 #name-goes-here{
     font-size: 16pt;
@@ -47,7 +77,6 @@ input[type="file"] {
   }
   .bigprofilepicture{
     border-radius: 50%;
-
   }
   .custom-file-upload {
     border: 0.05rem solid black;

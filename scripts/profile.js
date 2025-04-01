@@ -13,6 +13,13 @@ function populateUserInfo() {
                             let userEmail = userDoc.data().email;
                             let userCountry = userDoc.data().country;
                             let userPhoto = userDoc.data().profileImage;
+
+                            function displayProfileEditImage(base64String) {
+                                var imgElement = document.getElementById("uploadPhoto");
+                                imgElement.src = "data:image/png;base64," + base64String; 
+                              }
+
+                              displayProfileEditImage(userPhoto);
                             //if the data fields are not empty, then write them in to the form.
                             if (userName != null) {
                                 document.getElementById("nameInput").value = userName;
