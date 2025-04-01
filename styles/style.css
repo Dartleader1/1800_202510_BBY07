@@ -38,7 +38,7 @@ body, html {
   } */
 /* MAP STYLES */
 #map {
-    height: 90vh !important;
+    height: 90vh;
     position: relative;
     margin-top: none;
 }
@@ -55,7 +55,6 @@ body, html {
 }
 .fs-2{
     font-weight: bolder;
-    
 }
 .preview{
     border-radius: 5%;
@@ -74,9 +73,6 @@ body, html {
 /*profile.html*/
 input[type="file"] {
     display: none;
-  }
-  .bigprofilepicture{
-    border-radius: 50%;
   }
   .custom-file-upload {
     border: 0.05rem solid black;
@@ -133,49 +129,11 @@ header {
     background-color: #226f54ff;
 }
 
-/* FIREBASE AUTH CONTAINER */
 #firebaseui-auth-container {
     height: 50%;
     display: flex;
     flex-direction: column;
     justify-content: space-around;
-}
-
-/* Mobile: Half-Screen Map */
-@media screen and (max-width: 767px) {
-    #map {
-        height: 50vh; /* Half of the screen */
-    }
-}
-
-/* BATTERY LIST STYLES */
-#battery-list {
-    background: white;
-    padding: 10px;
-    border-radius: 8px;
-    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
-    font-size: 14px;
-}
-
-/* Desktop: Battery List at Bottom-Right */
-@media screen and (min-width: 768px) {
-    #battery-list {
-        position: fixed;
-        bottom: 10px;
-        right: 10px;
-        width: 250px;
-    }
-}
-
-/* Mobile: Battery List Below the Map */
-@media screen and (max-width: 767px) {
-    #battery-list {
-        position: relative;
-        bottom: auto;
-        right: auto;
-        width: 100%;
-        margin-top: 10px;
-    }
 }
 
 .message {
