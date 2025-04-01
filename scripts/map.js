@@ -201,10 +201,10 @@ function addUserPinCircle(map) {
                     'circle-stroke-color': '#ffffff'
                 }
             });
-            
-            getClickedLocation(map, (clickedLocation) => {
-                getRoute(map, userLocation, clickedLocation);
-            });
+            // get route currently disabled
+            // getClickedLocation(map, (clickedLocation) => {
+            //     getRoute(map, userLocation, clickedLocation);
+            // });
 
             // Map On Click function that creates a popup displaying the user's location
             map.on('click', 'userLocation', (e) => {

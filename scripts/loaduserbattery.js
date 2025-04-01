@@ -1,4 +1,12 @@
 // displays batteries the logged in user owns from firebase in browser
+var currentUser;
+firebase.auth().onAuthStateChanged(function(user) {
+    if (user) {
+        populateBatteries();
+    } else {
+      // No user is signed in.
+    }
+  });
 function populateBatteries() {
     let batteryCard = document.getElementById("BatteryCard");
     let batteryCardGroup = document.getElementById("batteryCardGroup");
@@ -14,7 +22,9 @@ function populateBatteries() {
                 var cable = doc.data().batteryCable;
                 var capacity = doc.data().batteryCapacity;
                 var port = doc.data().batteryPort;
-                var user = doc.data().name;
+                var user = doc.data().userID;
+
+                if(currentUser == userID){
 
                 let batteryCards = batteryCard.content.cloneNode(true);
                 batteryCards.querySelector(".batteryName").innerHTML = title;
@@ -24,7 +34,8 @@ function populateBatteries() {
                 batteryCards.querySelector(".userName").innerHTML = `User: ${user} `;
 
                 batteryCardGroup.appendChild(batteryCards);
+                }
+ 
             });
         });
 }
-populateBatteries();
