@@ -10,6 +10,7 @@
   <script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-app-compat.js"></script>
   <script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-database-compat.js"></script>
   <script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-firestore-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-auth-compat.js"></script>
 </head>
 <body>
   <div class="main-container">
@@ -52,8 +53,20 @@
       databaseURL: "https://bby07-fbd2d-default-rtdb.firebaseio.com"
     };
     firebase.initializeApp(firebaseConfig);
+
+    // 🔐 Anonymous sign-in
+    firebase.auth().onAuthStateChanged((user) => {
+      if (user) {
+        console.log("✅ Signed in anonymously as:", user.uid);
+      } else {
+        firebase.auth().signInAnonymously()
+          .then(() => console.log("✅ Anonymous login success"))
+          .catch((error) => console.error("❌ Anonymous login failed:", error));
+      }
+    });
   </script>
 
+  <!-- Core App Logic -->
   <script src="../scripts/message.js"></script>
 </body>
 </html>
