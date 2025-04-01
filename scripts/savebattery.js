@@ -33,7 +33,9 @@ function saveBattery() {
                 timestamp: firebase.firestore.FieldValue.serverTimestamp(),
                 latitude: lat,
                 longitude: long,
-                last_updated: firebase.firestore.FieldValue.serverTimestamp() // Adds current system time
+                last_updated: firebase.firestore.FieldValue.serverTimestamp(), // Adds current system time
+                active: false,
+                reserved: false
             }).then((doc) => {
                 console.log("Post document added with ID:", doc.id);
                 // Optional: call another function, such as uploadPic, if you have an image to upload

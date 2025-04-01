@@ -70,6 +70,10 @@ body, html {
     cursor: pointer;
     --bs-dropdown-link-hover-bg: rgba(255, 0, 0, 0.116);
 }
+/* battery lend page */
+.submitContainer{
+    display: none;
+}
 /*profile.html*/
 input[type="file"] {
     display: none;
