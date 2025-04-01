@@ -10,23 +10,23 @@
   <script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-app-compat.js"></script>
   <script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-database-compat.js"></script>
   <script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-firestore-compat.js"></script>
-
 </head>
 <body>
-  <!-- Main Chat Interface -->
   <div class="main-container">
     <!-- Sidebar -->
     <div class="sidebar">
       <div class="search-box">
         <input type="text" id="search-input" placeholder="Search by ID..." />
       </div>
-      <ul class="friend-list" id="friend-list">
-        <!-- Friends loaded dynamically -->
-      </ul>
+      <ul class="friend-list" id="friend-list"></ul>
     </div>
 
     <!-- Chat Section -->
     <div class="chat-section">
+      <div class="chat-nav">
+        <button id="friend-request-btn">New Friends</button>
+      </div>
+
       <h2 class="chat-header">Select a friend to chat with</h2>
       <div class="chat-messages"></div>
 
