@@ -135,9 +135,6 @@ input[type="file"] {
 .btn:hover {
     background-color: #f99393;
 }
-.profilepicture {
-    padding: 5px;
-}
 /* ICONS */
 .icon {
     width: 40px;

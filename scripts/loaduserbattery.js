@@ -34,7 +34,6 @@ function populateUserBatteries() {
           const deleteBtn = clone.querySelector(".delete-battery");
           deleteBtn.setAttribute("data-id", doc.id);
 
-          // ✅ Set onclick to redirect to edit page
           const editBtn = clone.querySelector(".edit-battery");
           editBtn.addEventListener("click", function () {
             window.location.href = `/pages/editbattery.html?id=${doc.id}`;
@@ -59,11 +58,9 @@ document.addEventListener("click", function (e) {
       return;
     }
 
-    // ✅ Delete from Firestore
     db.collection("batteries").doc(docId).delete()
       .then(() => {
         console.log("Document deleted:", docId);
-        // ✅ Remove card from DOM
         e.target.closest(".card").remove();
       })
       .catch((error) => {
