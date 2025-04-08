@@ -40,6 +40,9 @@
     </div>
   </div>
 
+  <!-- 🔵 Home Button -->
+  <button class="home-button" title="Go Home">🏠</button>
+
   <!-- Firebase Config -->
   <script>
     const firebaseConfig = {
@@ -68,5 +71,12 @@
 
   <!-- Core App Logic -->
   <script src="../scripts/message.js"></script>
+
+  <!-- Home Button JS -->
+  <script>
+    document.querySelector('.home-button').addEventListener('click', () => {
+      window.location.href = 'main.html';
+    });
+  </script>
 </body>
 </html>
