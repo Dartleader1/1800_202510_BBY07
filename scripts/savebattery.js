@@ -30,6 +30,7 @@ function saveBattery() {
                 // batteryPhoto: batteryPhoto,
                 batteryCable: batteryCable,
                 batteryPort: batteryPort,
+                batteryCableLength: batteryCableLength,
                 batteryCapacity: batteryCapacity,
                 userID: userID,
                 name: displayName,

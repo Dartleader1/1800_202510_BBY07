@@ -41,7 +41,7 @@ function showMap() {
 
 function addBatteryPins(map) {
   map.loadImage(
-    'https://cdn.iconscout.com/icon/free/png-256/pin-locate-marker-location-navigation-16-28668.png',
+    '/images/batteryping.png',
     (error, image) => {
       if (error) throw error;
 
@@ -91,7 +91,7 @@ function addBatteryPins(map) {
           source: 'places',
           layout: {
             'icon-image': 'eventpin',
-            'icon-size': 0.1,
+            'icon-size': 0.2,
             'icon-allow-overlap': true
           }
         });
