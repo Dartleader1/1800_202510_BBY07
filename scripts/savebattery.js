@@ -6,6 +6,9 @@ function saveBattery() {
     let batteryPort = document.getElementById("batteryPort").value;
     let batteryCapacity = document.getElementById("batteryCapacity").value;
 
+    if (!batteryName) {
+        return;
+    }
     console.log(batteryName, batteryCable, batteryPort, batteryCapacity);
 
     var user = firebase.auth().currentUser;
@@ -40,7 +43,7 @@ function saveBattery() {
                 console.log("Post document added with ID:", doc.id);
                 // Optional: call another function, such as uploadPic, if you have an image to upload
                 // uploadPic(doc.id);
-                window.location.href = "main.html"; // Redirect to main page
+                window.location.href = "rent.html"; // Redirect to main page
             }).catch((error) => {
                 console.error("Error adding document:", error);
             });
@@ -51,3 +54,13 @@ function saveBattery() {
         console.log("Error: No user is logged in");
     }
 }
+
+document.addEventListener("DOMContentLoaded", function () {
+    const form = document.getElementById("batteryForm");
+    if (form) {
+        form.addEventListener("submit", function (e) {
+            e.preventDefault();
+            saveBattery();
+        });
+    }
+});

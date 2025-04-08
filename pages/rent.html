@@ -25,7 +25,9 @@
   <div id="navbarPlaceholder"></div>
 
   <div class="text-center my-3">
-    <button id="openFormButton" class="btn btn-success">+ Add New Battery</button>
+    <a href="/pages/submitbattery.html">
+    <button id="openFormButton" class="btn btn-success" onclick="">+ Add New Battery </button>
+  </a>
   </div>
   
   <div id="battery-form-container" class="battery-overlay" style="display: none;"></div>
@@ -34,7 +36,7 @@
   
 
   <div id="battery-list-container">
-    <h2 class="text-center my-4">Available Batteries</h2>
+    <h2 class="text-center my-4">Your Batteries</h2>
     <div id="batteryCardGroup" class="d-flex flex-wrap justify-content-center gap-4"></div>
   </div>
   
@@ -66,7 +68,7 @@
         <img src="/images/home.png" alt="Home" />
         <span>Home</span>
       </a>
-      <a href="/pages/lend.html">
+      <a href="/pages/rent.html">
         <img src="/images/battery-buddy.png" alt="Charge" />
         <span>Charge</span>
       </a>
@@ -77,42 +79,13 @@
     </nav>
   <!-- Bootstrap JS Bundle (includes Popper) -->
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
-    integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
-    <script>
-      $(document).ready(function () {
-        $("#openFormButton").on("click", function () {
-          $("#battery-form-container").load("../text/batteryform.html", function (response, status, xhr) {
-            if (status === "error") {
-              console.error(" Error loading battery form:", xhr.status, xhr.statusText);
-              $("#battery-form-container").html("<div class='alert alert-danger'>Could not load form.</div>");
-            } else {
-              console.log("hi");
-    
-              // Add exit button
-              $("#battery-form-container").prepend(
-                '<button id="closeFormButton" aria-label="Close Form">&larr; Exit</button>'
-              );
-    
-              // Show the form
-              $("#battery-form-container").fadeIn();
-            }
-          });
-        });
-    
-        // Close button (event delegation since the button is dynamically added)
-        $(document).on("click", "#closeFormButton", function () {
-          $("#battery-form-container").fadeOut().empty();
-        });
-      });
-    </script>
-    
-    
-    
+    integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>    
   <!-- <script src="https://www.gstatic.com/firebasejs/ui/4.8.1/firebase-ui-auth.js"></script>  -->
   <script src="../scripts/api.js"></script> 
   <script src="../scripts/main.js"></script>
   <script src="../scripts/skeleton.js"></script>
   <script src="../scripts/loaduserbattery.js"></script>
+  <script src="../scripts/savebattery.js"></script>
 
   <!-- <script src="../scripts/authentication.js"></script>  -->
       
