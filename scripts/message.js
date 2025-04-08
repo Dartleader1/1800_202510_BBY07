@@ -27,12 +27,17 @@ firebase.auth().onAuthStateChanged(async (user) => {
   updateFriendRequestBadge();
 });
 
-// ========== SEARCH USERS ==========
+// ========== SEARCH USERS (to chat section instead of sidebar) ==========
 searchInput.addEventListener("input", async (e) => {
   const query = e.target.value.trim();
-  friendList.innerHTML = "";
+  if (query.length < 2) {
+    chatHeader.textContent = "Select a friend to chat with";
+    chatMessages.innerHTML = "";
+    return;
+  }
 
-  if (query.length < 2) return;
+  chatHeader.textContent = "Search Results";
+  chatMessages.innerHTML = "<p>Searching...</p>";
 
   const results = await db.collection("users")
     .where("name", ">=", query)
@@ -40,28 +45,34 @@ searchInput.addEventListener("input", async (e) => {
     .limit(10)
     .get();
 
+  chatMessages.innerHTML = "";
+  if (results.empty) {
+    chatMessages.innerHTML = "<p>No users found.</p>";
+    return;
+  }
+
   results.forEach(doc => {
-    if (doc.id === currentUser.id) return; // skip self
+    if (doc.id === currentUser.id) return;
     const user = doc.data();
 
-    const li = document.createElement("li");
-    li.className = "friend-item";
-    li.innerHTML = `
+    const div = document.createElement("div");
+    div.className = "message";
+    div.innerHTML = `
       <strong>${user.name}</strong><br>
       <small>${user.email}</small><br>
       <button class="send-request-btn">Send Friend Request</button>
     `;
 
-    li.querySelector(".send-request-btn").onclick = async () => {
+    div.querySelector(".send-request-btn").onclick = async () => {
       await db.collection("users").doc(doc.id).update({
         "requests.incoming": firebase.firestore.FieldValue.arrayUnion(currentUser.id)
       });
 
-      li.querySelector(".send-request-btn").disabled = true;
-      li.querySelector(".send-request-btn").innerText = "Sent ✅";
+      div.querySelector(".send-request-btn").disabled = true;
+      div.querySelector(".send-request-btn").innerText = "Sent ✅";
     };
 
-    friendList.appendChild(li);
+    chatMessages.appendChild(div);
   });
 });
 
@@ -197,7 +208,7 @@ friendRequestBtn.onclick = async () => {
       });
       div.remove();
       updateFriendRequestBadge();
-      loadFriends(); // 🔄 Auto-refresh friend list
+      loadFriends(); // Auto-refresh friend list
     };
 
     div.querySelector(".decline-btn").onclick = async () => {
