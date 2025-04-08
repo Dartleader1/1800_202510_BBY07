@@ -5,6 +5,8 @@ function saveBattery() {
     let batteryCable = document.getElementById("batteryCable").value;
     let batteryPort = document.getElementById("batteryPort").value;
     let batteryCapacity = document.getElementById("batteryCapacity").value;
+    let batteryCableLength = document.getElementById("batteryCapacity").value;
+
 
     if (!batteryName) {
         return;
