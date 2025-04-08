@@ -24,49 +24,95 @@
   <!-- Main Content -->
   <div id="navbarPlaceholder"></div>
 
+  <div class="text-center my-3">
+    <button id="openFormButton" class="btn btn-success">+ Add New Battery</button>
+  </div>
+  
+  <div id="battery-form-container" class="battery-overlay" style="display: none;"></div>
+  
+  <div id="battery-form-container" class="container my-4"></div>
+  
 
-  <div class="container">
-    <h2> Available batteries: </h2>
-        <div id="details-go-here"></div>
-        <div class="card-container">
-            <div id="batteryCardGroup" class="row row-cols-auto">
-            </div>
-        </div>
- </div>
-    
-    <template id="BatteryCard">
-        <div class="card">
-            <img class="card-img-top">
-            <div class="card-body bg-light">
-              <h6 class="userName">placeholder</h6>
-              <h5 class="batteryName">placeholder</h5>
-              <p class="batteryCable">placeholder</p>
-              <p class="batteryCapacity">placeholder</p>
-              <p class="batteryPort">placeholder</p>
+  <div id="battery-list-container">
+    <h2 class="text-center my-4">Available Batteries</h2>
+    <div id="batteryCardGroup" class="d-flex flex-wrap justify-content-center gap-4"></div>
+  </div>
+  
 
-            </div>
-        </div>
-    </template>
+<div id="edit-battery-form-container" class="battery-overlay" style="display: none;"></div>
 
-
-
-
+<template id="BatteryCard">
+  <div class="card m-2 shadow-sm" style="min-width: 250px;">
+    <div class="card-body bg-light">
+      <h6 class="userName text-muted">User</h6>
+      <h5 class="batteryName fw-bold">Battery Name</h5>
+      <p class="batteryCable">Cable</p>
+      <p class="batteryCapacity">Capacity</p>
+      <p class="batteryPort">Ports</p>
+      <div class="d-flex gap-2">
+        <button class="btn btn-outline-primary btn-sm edit-battery">Edit</button>
+        <button class="btn btn-outline-danger btn-sm delete-battery">Delete</button>
+      </div>
+    </div>
+  </div>
+</template>
+<div id="edit-battery-form-container" class="battery-edit-overlay" style="display: none;"></div>
 
 
 
 
-
-
-
-
+    <nav id="mobile-navbar">
+      <a href="/pages/main.html">
+        <img src="/images/home.png" alt="Home" />
+        <span>Home</span>
+      </a>
+      <a href="/pages/lend.html">
+        <img src="/images/battery-buddy.png" alt="Charge" />
+        <span>Charge</span>
+      </a>
+      <a href="/pages/profile.html">
+        <img class="profilepicture" id="userpfp" src="/images/default.jpg" alt="Profile" />
+        <span>Profile</span>
+      </a>
+    </nav>
   <!-- Bootstrap JS Bundle (includes Popper) -->
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
     integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+    <script>
+      $(document).ready(function () {
+        $("#openFormButton").on("click", function () {
+          $("#battery-form-container").load("../text/batteryform.html", function (response, status, xhr) {
+            if (status === "error") {
+              console.error(" Error loading battery form:", xhr.status, xhr.statusText);
+              $("#battery-form-container").html("<div class='alert alert-danger'>Could not load form.</div>");
+            } else {
+              console.log("hi");
+    
+              // Add exit button
+              $("#battery-form-container").prepend(
+                '<button id="closeFormButton" aria-label="Close Form">&larr; Exit</button>'
+              );
+    
+              // Show the form
+              $("#battery-form-container").fadeIn();
+            }
+          });
+        });
+    
+        // Close button (event delegation since the button is dynamically added)
+        $(document).on("click", "#closeFormButton", function () {
+          $("#battery-form-container").fadeOut().empty();
+        });
+      });
+    </script>
+    
+    
+    
   <!-- <script src="https://www.gstatic.com/firebasejs/ui/4.8.1/firebase-ui-auth.js"></script>  -->
   <script src="../scripts/api.js"></script> 
   <script src="../scripts/main.js"></script>
   <script src="../scripts/skeleton.js"></script>
-  <script src="../scripts/loadbattery.js"></script>
+  <script src="../scripts/loaduserbattery.js"></script>
 
   <!-- <script src="../scripts/authentication.js"></script>  -->
       

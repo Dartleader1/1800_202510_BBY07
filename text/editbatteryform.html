@@ -1,0 +1,46 @@
+<div class="container">
+    <h4 class="mb-4 text-center">Edit Battery</h4>
+  
+    <form id="editBatteryForm" onsubmit="updateBattery(event)">
+      <div class="mb-3">
+        <label class="form-label">Battery Name</label>
+        <input type="text" class="form-control" id="editBatteryName" required>
+      </div>
+  
+      <div class="mb-3">
+        <label class="form-label">Cable Type</label>
+        <select class="form-select" id="editBatteryCable" required>
+          <option>USB-C</option>
+          <option>Apple Lightning</option>
+          <option>Micro USB</option>
+          <option>Mini USB-A</option>
+          <option>Mini USB-B</option>
+          <option>Other</option>
+        </select>
+      </div>
+  
+      <div class="mb-3">
+        <label for="editBatteryCapacity" class="form-label">Power Capacity <span id="editCapacityValue">5000 mAh</span></label>
+        <input type="range" class="form-range" min="1000" max="20000" step="500" id="editBatteryCapacity" value="5000"
+          oninput="document.getElementById('editCapacityValue').innerText = this.value + ' mAh'">
+      </div>
+  
+      <div class="mb-3">
+        <label for="editBatteryPort" class="form-label">USB Ports <span id="editPortValue">2</span></label>
+        <input type="range" class="form-range" min="1" max="5" step="1" id="editBatteryPort" value="2"
+          oninput="document.getElementById('editPortValue').innerText = this.value">
+      </div>
+  
+      <div class="mb-3">
+        <label for="editBatteryCableLength" class="form-label">Cable Length <span id="editLengthValue">3 ft</span></label>
+        <input type="range" class="form-range" min="1" max="10" step="1" id="editBatteryCableLength" value="3"
+          oninput="document.getElementById('editLengthValue').innerText = this.value + ' ft'">
+      </div>
+  
+      <div class="d-flex gap-2 justify-content-end">
+        <button type="button" class="btn btn-secondary" onclick="$('#edit-battery-form-container').fadeOut().empty()">Cancel</button>
+        <button type="submit" class="btn btn-success">Save Changes</button>
+      </div>
+    </form>
+  </div>
+  
