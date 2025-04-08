@@ -10,31 +10,41 @@ firebase.auth().onAuthStateChanged(function(user) {
 });
 
 function populateUserBatteries() {
-  let batteryCardTemplate = document.getElementById("BatteryCard");
-  let batteryCardGroup = document.getElementById("batteryCardGroup");
+  const batteryCardTemplate = document.getElementById("BatteryCard");
+  const batteryCardGroup = document.getElementById("batteryCardGroup");
 
-  db.collection("batteries")
-    .where("userID", "==", currentUserID)
-    .get()
-    .then((querySnapshot) => {
-      querySnapshot.forEach((doc) => {
-        const battery = doc.data();
+  firebase.auth().onAuthStateChanged((user) => {
+    if (!user) return;
 
-        let clone = batteryCardTemplate.content.cloneNode(true);
-        clone.querySelector(".batteryName").innerText = battery.batteryName;
-        clone.querySelector(".batteryCable").innerText = `Cable Type: ${battery.batteryCable}`;
-        clone.querySelector(".batteryCapacity").innerText = `Battery Capacity: ${battery.batteryCapacity} mAh`;
-        clone.querySelector(".batteryPort").innerText = `Ports: ${battery.batteryPort}`;
-        clone.querySelector(".userName").innerText = `You`;
-        clone.querySelector(".delete-battery").setAttribute("data-id", doc.id);
+    db.collection("batteries")
+      .where("userID", "==", user.uid)
+      .get()
+      .then((querySnapshot) => {
+        querySnapshot.forEach((doc) => {
+          const battery = doc.data();
+          const clone = batteryCardTemplate.content.cloneNode(true);
 
-        batteryCardGroup.appendChild(clone);
+          clone.querySelector(".batteryName").innerText = battery.batteryName;
+          clone.querySelector(".batteryCable").innerText = "Cable: " + battery.batteryCable;
+          clone.querySelector(".batteryCapacity").innerText = "Capacity: " + battery.batteryCapacity + " mAh";
+          clone.querySelector(".batteryPort").innerText = "Ports: " + battery.batteryPort;
+          clone.querySelector(".userName").innerText = "You";
+
+          // ✅ Set data-id for delete button
+          const deleteBtn = clone.querySelector(".delete-battery");
+          deleteBtn.setAttribute("data-id", doc.id);
+
+          // ✅ Set onclick to redirect to edit page
+          const editBtn = clone.querySelector(".edit-battery");
+          editBtn.addEventListener("click", function () {
+            window.location.href = `/pages/editbattery.html?id=${doc.id}`;
+          });
+          batteryCardGroup.appendChild(clone);
+        });
       });
-    })
-    .catch((error) => {
-      console.error("Error loading user batteries:", error);
-    });
+  });
 }
+
 
 
 document.addEventListener("click", function (e) {
