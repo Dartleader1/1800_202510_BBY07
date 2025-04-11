@@ -1,4 +1,3 @@
-![image](https://github.com/user-attachments/assets/84c97953-ad1e-4567-a37d-9755a5f606cc)
 # Battery Buddy
 
 ## Overview
