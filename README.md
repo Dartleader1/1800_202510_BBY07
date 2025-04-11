@@ -1,23 +1,17 @@
-
-# Project Name
+![image](https://github.com/user-attachments/assets/84c97953-ad1e-4567-a37d-9755a5f606cc)
+# Battery Buddy
 
 ## Overview
-Summarize your project's purpose, problem solved, key features, user benefits, development context, and main technologies used.
-
-Example:
-
-This client-side JavaScript web application provides real-time weather updates for cities worldwide. It simplifies accessing weather information through an intuitive mobile-first interface, allowing users to input a city name and receive data on temperature, humidity, and conditions.
-
-Developed for the [Course Name] course, applying User-Centred Design practices, agile project management processes, integrating a weather API, and Firebase backend services.
-
----
+Our project battery buddy aims to provide a service were users can borrow and lend portable power banks. This is a client-side javascript web application developed
+for comp1800.
 
 ## Features
 
 Example:
-- Real-time weather updates for any city.
+- Real-time location listings for batteries
 - Responsive design for desktop and mobile.
-- Displays temperature, humidity, and weather conditions.
+- Displays a map cenetered around the user's location
+- realtime messaging system.
 
 ---
 
@@ -34,9 +28,9 @@ Example:
 ## Usage
 
 Example:
-1. Open your browser and visit `http://localhost:3000`.
-2. Enter the name of the city in the search bar and press enter.
-3. View the weather information displayed on the screen.
+1. Open your browser and visit our site.
+2. View the map and message a user near you.
+3. Or, list a battery for other users to see.
 
 ---
 
@@ -60,8 +54,6 @@ project-name/
 ## Contributors
 
 - **Justin** - BCIT CSIT Student, professional coder with over 2 weeks of expereience. Fun fact: Is double jointed in the right thumb.
-- **Ahmad Rashid** - CIT Student with over one week of expereience. Fun Fact :nothing 
-
 - **Peter** - I'm a BCIT CST student here and trying to learn how to use git. Fun fact: I learnd few years Kunfu.
 
 ---
@@ -79,17 +71,16 @@ Example:
 ### Limitations
 
 Example:
-- Currently, the app only supports city-based weather searches.
-- Limited to basic weather parameters like temperature, humidity, and conditions.
+- Currently, the app has no rental tracking system.
+- Transaction history is not recorded..
 - The user interface can be further enhanced for accessibility.
 
 ### Future Work
 
 Example: 
-- Add support for location-based weather detection using GPS.
-- Implement additional weather parameters like wind speed and UV index.
+- Add support for rental tracking and transaction history.
+- Implement additional profile customization.
 - Create a dark mode for better usability in low-light conditions.
-- Integrate user accounts for saving favorite locations.
 
 ---
 
